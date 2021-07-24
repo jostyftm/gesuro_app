@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Css
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import 'App.css';
+
+// Routes
+import {
+  UnAuthenticateRoutes,
+  AuthenticateRoutes
+} from 'routes';
+
+// Utils
+import {getUserLogged} from 'utils/AuthUtil';
+
+// Hooks
+import useAuth from 'hooks/UseAuth';
+
+const App = () => {
+
+  // Hooks
+  const {
+    isLogged, 
+    setIsLogged,
+    setUserLogged
+  } = useAuth();
+
+  useEffect( () => {
+
+    let user = getUserLogged();
+
+    if(user) {
+      setUserLogged(user);
+      setIsLogged(true);
+    }
+  },[setUserLogged, setIsLogged]);
+
+  return isLogged ? 
+      <AuthenticateRoutes /> :
+      <UnAuthenticateRoutes /> ;
 }
 
 export default App;
