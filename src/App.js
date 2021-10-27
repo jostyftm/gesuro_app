@@ -1,44 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // Css
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
-import 'App.css';
+import 'App.scss';
 
 // Routes
-import {
-  UnAuthenticateRoutes,
-  AuthenticateRoutes
-} from 'routes';
-
-// Utils
-import {getUserLogged} from 'utils/AuthUtil';
-
-// Hooks
-import useAuth from 'hooks/UseAuth';
+import Routes from 'routes';
 
 const App = () => {
-
-  // Hooks
-  const {
-    isLogged, 
-    setIsLogged,
-    setUserLogged
-  } = useAuth();
-
-  useEffect( () => {
-
-    let user = getUserLogged();
-
-    if(user) {
-      setUserLogged(user);
-      setIsLogged(true);
-    }
-  },[setUserLogged, setIsLogged]);
-
-  return isLogged ? 
-      <AuthenticateRoutes /> :
-      <UnAuthenticateRoutes /> ;
+  return <Routes />;
 }
 
 export default App;

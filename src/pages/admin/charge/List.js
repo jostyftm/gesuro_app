@@ -1,31 +1,25 @@
-import React from 'react';
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Panel from "components/Panel";
+import { 
+    DASHBOARD_CHARGE_EDIT_ROUTE, 
+    DASHBOARD_CHARGE_NEW 
+} from "constants/routes";
+import DashboardLayout from "layouts/DashboardLayout";
+import React from "react";
+import { Link } from "react-router-dom";
 
-// Components
-import Panel from 'components/Panel';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-// Layout
-import DashboardLayout from 'layouts/DashboardLayout';
-
-import { Link } from 'react-router-dom';
-
-// Constants
-import {
-    CATEGORY as CATEGORY_ROUTE
-} from 'constants/routes';
-
-const CategoryList = () => {
+const ChargeListPage = () => {
 
     return (
         <DashboardLayout>
             <div className="d-flex justify-content-between align-items-center">
-                <h1>Categorias</h1>
+                <h1>Cargos</h1>
                 <Link 
                     className="btn btn-sm btn-primary"
-                    to={`${CATEGORY_ROUTE}/new`}
+                    to={DASHBOARD_CHARGE_NEW}
                 >
-                    Crear categoria
+                    Crear cargo
                 </Link>
             </div>
             <Panel>
@@ -52,22 +46,20 @@ const CategoryList = () => {
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Fecha de creacion</th>
+                                <th>Fecha de creación</th>
                                 <th>Fecha de actualización</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Seguro</td>
-                                <td>a qui va la descripcripción, pero cortada..</td>
+                                <td>cargo</td>
                                 <td>hoy</td>
                                 <td>hoy </td>
                                 <td>
                                     <Link
                                         className="btn btn-sm btn-outline-primary"
-                                        to={`${CATEGORY_ROUTE}/1/edit`}
+                                        to={DASHBOARD_CHARGE_EDIT_ROUTE(1)}
                                     >
                                         <FontAwesomeIcon icon={faEye} />
                                     </Link>
@@ -78,7 +70,7 @@ const CategoryList = () => {
                 </div>
             </Panel>
         </DashboardLayout>
-    );
+    )
 }
 
-export default CategoryList;
+export default ChargeListPage;

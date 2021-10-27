@@ -3,7 +3,7 @@ import React from 'react';
 // Layout 
 import DashboardLayout from 'layouts/DashboardLayout';
 
-const AdminHome = (props) => {
+const HomePage = (props) => {
     return (
         <DashboardLayout>
             
@@ -11,4 +11,4 @@ const AdminHome = (props) => {
     );
 }
 
-export default AdminHome;
+export default HomePage;

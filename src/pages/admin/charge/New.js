@@ -1,24 +1,17 @@
-import React from 'react';
+import { faTags } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Panel from "components/Panel";
+import { DASHBOARD_CHARGE_LIST } from "constants/routes";
+import DashboardLayout from "layouts/DashboardLayout";
+import React from "react";
+import { Link } from "react-router-dom";
 
-// Layout 
-import DashboardLayout from 'layouts/DashboardLayout';
+const ChargeCreatePage = () => {
 
-// Components
-import Panel from 'components/Panel';
-import {Link} from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTags } from '@fortawesome/free-solid-svg-icons';
-
-// Constants
-import {
-    CATEGORY as CATEGORY_ROUTE
-} from 'constants/routes';
-
-const CategoryEdit = () => {
-    return(
+    return (
         <DashboardLayout>
-            <div>
-                <h1>Actualizar categoria</h1>
+           <div>
+                <h1>Crear cargo</h1>
             </div>
             <Panel>
                 <div className="container">
@@ -33,24 +26,16 @@ const CategoryEdit = () => {
                                         className="form-control"
                                     />
                                 </div>
-                                <div className="col-md-12 mb-3">
-                                    <label>Descripción</label>
-                                    <textarea
-                                        className="form-control"
-                                    >
-
-                                    </textarea>
-                                </div>
                                 <div className="d-grid gap-2">
                                     <button 
                                         className="btn btn-primary" 
                                         type="submit"
                                     >
-                                        Actualizar categoria
+                                        Crear cargo
                                     </button>
-                                    <Link 
+                                    <Link
                                         className="btn btn-light" 
-                                        to={CATEGORY_ROUTE}
+                                        to={DASHBOARD_CHARGE_LIST}
                                     >
                                         Cancelar
                                     </Link>
@@ -65,9 +50,9 @@ const CategoryEdit = () => {
                         </div>
                     </div>
                 </div>
-            </Panel>
+            </Panel> 
         </DashboardLayout>
-    );
+    )
 }
 
-export default CategoryEdit;
+export default ChargeCreatePage;

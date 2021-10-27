@@ -5,28 +5,29 @@ import DashboardLayout from 'layouts/DashboardLayout';
 
 // Components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
 import Panel from 'components/Panel';
 import { Link } from 'react-router-dom';
+import { 
+    DASHBOARD_POLICY_EDIT_ROUTE, DASHBOARD_POLICY_NEW
+} from 'constants/routes';
+import PolicyDeleteModal from './delete';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 // Constants
-import {
-    POLICY as POLICY_ROUTE
-} from 'constants/routes';
 
-const PolicyList = () => {
+
+const PolicyListPage = () => {
     return (
-        <DashboardLayout>
-            <div className="d-flex justify-content-between align-items-center">
-                <h1>Polizas</h1>
-                <Link 
-                    className="btn btn-sm btn-primary"
-                    to={`${POLICY_ROUTE}/new`}
-                >
-                    Crear poliza
-                </Link>
-            </div>
+        <DashboardLayout title="Crear poliza">
             <Panel>
+                <div className="d-flex justify-content-between align-items-center">
+                    <Link 
+                        className="btn btn-sm btn-primary"
+                        to={DASHBOARD_POLICY_NEW}
+                    >
+                        Crear poliza
+                    </Link>
+                </div>
                 <div className="d-flex justify-content-between">
                     <div></div>
                     <div className="input-group mb-3 w-25">
@@ -65,20 +66,50 @@ const PolicyList = () => {
                                 <td>$ 150.000</td>
                                 <td>Hoy</td>
                                 <td>
-                                    <Link
-                                        className="btn btn-sm btn-outline-primary"
-                                        to={`${POLICY_ROUTE}/1/edit`}
-                                    >
-                                        <FontAwesomeIcon icon={faEye} />
-                                    </Link>
+                                    <div className="dropdown">
+                                        <button
+                                            className="btn btn-sm rounded-pill btn-primary"
+                                            data-bs-toggle="dropdown" 
+                                            aria-expanded="false"
+                                            type="button"
+                                            id="employee"
+                                        >
+                                            <FontAwesomeIcon 
+                                                icon={faEllipsisH}
+                                            />
+                                        </button>
+                                        <ul
+                                            className="dropdown-menu shadow border-0 rounded"
+                                        >
+                                            <li>
+                                                <Link
+                                                    to={DASHBOARD_POLICY_EDIT_ROUTE(1)}
+                                                    className="dropdown-item"
+                                                >
+                                                    Ver poliza
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <button
+                                                    to="#"
+                                                    className="dropdown-item text-danger"
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#modalDeletePolicy"
+                                                >
+                                                    Eliminar poliza
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </Panel>
+            <PolicyDeleteModal id="modalDeletePolicy" />
         </DashboardLayout>
     );
 }
 
-export default PolicyList;
+export default PolicyListPage;

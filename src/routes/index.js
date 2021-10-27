@@ -5,98 +5,111 @@ import {
     BrowserRouter as Router
 } from 'react-router-dom';
 
-// Pages when user is unAuthenticate
-import LoginPage from 'pages/auth/LoginPage';
-import ForgotPasswordPage from 'pages/auth/ForgotPasswordPage';
-
-// Pages when user is auhtenticated
-import AdminHome from 'pages/admin';
-
-import CompanyList from 'pages/admin/company/List';
-import CompanyNew from 'pages/admin/company/New';
-import CompanyEdit from 'pages/admin/company/Edit';
-
-import CategoryList from 'pages/admin/category/List';
-import CategoryNew from 'pages/admin/category/New';
-import CategoryEdit from 'pages/admin/category/Edit';
-
-import UserList from 'pages/admin/user/List';
-import UserNew from 'pages/admin/user/New';
-import UserPersonalInformation from 'pages/admin/user/PersonalInformation';
-
-import ClientList from 'pages/admin/client/List';
-import ClientPolicy from 'pages/admin/client/Policy';
-import ClientAditionalInformationPage from 'pages/admin/client/AditionalInformation';
-
-import EmployeeListPage from 'pages/admin/employee/List';
-import EmployeeWorkinglInformationPage from 'pages/admin/employee/WorkingInformation';
-
-import PolicyListPage from 'pages/admin/policy/List';
-import PolicyNewPage from 'pages/admin/policy/New';
-import PolicyEditPage from 'pages/admin/policy/Edit';
-import PolicyPaymentPage from 'pages/admin/policy/Payment';
-
-import PaymentListPage from 'pages/admin/payment/List';
-
 // Constants
-import {
-    COMPANY,
-    CATEGORY,
-    PATH,
-    USER,
-    CLIENT,
-    EMPLOYEE,
-    POLICY,
-    PAYMENT
+import { 
+    DASHBOARD, 
+    DASHBOARD_CLIENT_EDIT, 
+    DASHBOARD_CLIENT_LIST, 
+    DASHBOARD_CLIENT_NEW, 
+    DASHBOARD_CLIENT_POLICY, 
+    DASHBOARD_EMPLOYEE_EDIT, 
+    DASHBOARD_EMPLOYEE_LIST, 
+    DASHBOARD_INSURANCE_COMPANY_LIST, 
+    DASHBOARD_MY_COMPANY, 
+    DASHBOARD_MY_HEADQUARTER_DETAIL, 
+    DASHBOARD_MY_HEADQUARTER_EMPLOYEES, 
+    DASHBOARD_MY_HEADQUARTER_LIST,
+    DASHBOARD_MY_SERVICES_EDIT,
+    DASHBOARD_MY_SERVICES_LIST,
+    DASHBOARD_PAYMENT_LIST,
+    DASHBOARD_POLICY_EDIT,
+    DASHBOARD_POLICY_LIST,
+    DASHBOARD_POLICY_NEW,
+    DASHBOARD_POLICY_PAYMENT_LIST,
+    DASHBOARD_SERVICE_CATEGORY_LIST,
+    DASHBOARD_SERVICE_LIST
 } from 'constants/routes';
 
-// Pages Unauhtenticated
-export const UnAuthenticateRoutes = () => {
+// Pages
+import DASHBOARD_HOME_PAGE from 'pages/admin/home/index';
+import DASHBOARD_MY_COMPANY_PAGE from 'pages/admin/myCompany/index';
+
+import HeadquaterListPage from 'pages/admin/headquarter/list';
+import HeadquarterDetailPage from 'pages/admin/headquarter/detail';
+import HeadquarterEmployeeListPage from 'pages/admin/headquarter/employee';
+
+import EmployeeListPage from 'pages/admin/employee/list';
+import EmployeeEditPage from 'pages/admin/employee/edit';
+
+import ClientListPage from 'pages/admin/client/list';
+import ClientEditPage from 'pages/admin/client/edit';
+import ClientPolicyPage from 'pages/admin/client/policies';
+
+import PolicyListPage from 'pages/admin/policy/list';
+import PolicyCreatePage from 'pages/admin/policy/new';
+import PolicyEditPage from 'pages/admin/policy/edit';
+import PolicyPaymentPage from 'pages/admin/policy/payment/list';
+
+import PaymentListPage from 'pages/admin/payment/list';
+import MyServiceListPage from 'pages/admin/myService/list';
+import MyServiceEditPage from 'pages/admin/myService/edit';
+
+import ServiceCategoryListPage from 'pages/admin/serviceCategory/list';
+
+import ServiceListPage from 'pages/admin/service/list';
+
+import InsuranceCompanyListPage from 'pages/admin/insuranceCompany/list';
+
+const Routes = () => {
     
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={LoginPage} />
-                <Route exact path="/forgotPassword" component={ForgotPasswordPage} />
-            </Switch>
-        </Router>
-    );
-}
+                {/* Home */}
+                <Route exact path={DASHBOARD} component={DASHBOARD_HOME_PAGE} />
+                
+                {/* My company */}
+                <Route exact path={DASHBOARD_MY_COMPANY} component={DASHBOARD_MY_COMPANY_PAGE} />
 
-export const AuthenticateRoutes = (props) => {
+                {/* Headquarters */}
+                <Route exact path={DASHBOARD_MY_HEADQUARTER_LIST} component={HeadquaterListPage} />
+                <Route exact path={DASHBOARD_MY_HEADQUARTER_DETAIL} component={HeadquarterDetailPage} />
+                <Route exact path={DASHBOARD_MY_HEADQUARTER_EMPLOYEES} component={HeadquarterEmployeeListPage} />
+                
+                {/* Employees */}
+                <Route exact path={DASHBOARD_EMPLOYEE_LIST} component={EmployeeListPage} />
+                <Route exact path={DASHBOARD_EMPLOYEE_EDIT} component={EmployeeEditPage} />
+            
+                {/* Clients */}
+                <Route exact path={DASHBOARD_CLIENT_LIST} component={ClientListPage} />
+                <Route exact path={DASHBOARD_CLIENT_EDIT} component={ClientEditPage} />
+                <Route exact path={DASHBOARD_CLIENT_POLICY} component={ClientPolicyPage} />
 
-    return (
-        <Router>
-            <Switch>
-                <Route exact path='/' component={AdminHome} />
-                <Route exact path={`${PATH}`} component={AdminHome} />
-                {/* Companies */}
-                <Route exact path={`${COMPANY}`} component={CompanyList} />
-                <Route exact path={`${COMPANY}/new`} component={CompanyNew} />
-                <Route exact path={`${COMPANY}/:id/edit`} component={CompanyEdit} />
-                {/* Categories */}
-                <Route exact path={`${CATEGORY}`} component={CategoryList} />
-                <Route exact path={`${CATEGORY}/new`} component={CategoryNew} />
-                <Route exact path={`${CATEGORY}/:id/edit`} component={CategoryEdit} />
-                {/* User*/}
-                <Route exact path={`${USER}`} component={UserList} />
-                <Route exact path={`${USER}/new`} component={UserNew} />
-                <Route exact path={`${USER}/:id/edit`} component={UserPersonalInformation} />
-                <Route exact path={`${USER}/:id/policies`} component={ClientPolicy} />
-                {/* Client */}
-                <Route exact path={`${CLIENT}`} component={ClientList} />
-                <Route exact path={`${CLIENT}/:id/aditional_information`} component={ClientAditionalInformationPage} />
-                {/* Employee */}
-                <Route exact path={`${EMPLOYEE}`} component={EmployeeListPage} />
-                <Route exact path={`${EMPLOYEE}/:id/workin_information`} component={EmployeeWorkinglInformationPage} />
                 {/* Policies */}
-                <Route exact path={`${POLICY}`} component={PolicyListPage} />
-                <Route exact path={`${POLICY}/new`} component={PolicyNewPage} />
-                <Route exact path={`${POLICY}/1/edit`} component={PolicyEditPage} />
-                <Route exact path={`${POLICY}/1/payments`} component={PolicyPaymentPage} />
+                <Route exact path={DASHBOARD_POLICY_LIST} component={PolicyListPage} />
+                <Route exact path={DASHBOARD_POLICY_NEW} component={PolicyCreatePage} />
+                <Route exact path={DASHBOARD_POLICY_EDIT} component={PolicyEditPage} />
+                <Route exact path={DASHBOARD_POLICY_PAYMENT_LIST} component={PolicyPaymentPage} />
+
+                {/* My services */}
+                <Route exact path={DASHBOARD_MY_SERVICES_LIST} component={MyServiceListPage} />
+                <Route exact path={DASHBOARD_MY_SERVICES_EDIT} component={MyServiceEditPage} />
+
+
                 {/* Payments */}
-                <Route exact path={`${PAYMENT}`} component={PaymentListPage} />
+                <Route exact path={DASHBOARD_PAYMENT_LIST} component={PaymentListPage} />
+                
+                {/* Service category */}
+                <Route exact path={DASHBOARD_SERVICE_CATEGORY_LIST} component={ServiceCategoryListPage} />
+                
+                {/* Service */}
+                <Route exact path={DASHBOARD_SERVICE_LIST} component={ServiceListPage} />
+                
+                {/* Insurance Company */}
+                <Route exact path={DASHBOARD_INSURANCE_COMPANY_LIST} component={InsuranceCompanyListPage} />
             </Switch>
         </Router>
     );
 }
+
+export default Routes;

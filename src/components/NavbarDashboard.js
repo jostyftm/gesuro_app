@@ -5,20 +5,12 @@ import { Link } from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBell} from '@fortawesome/free-solid-svg-icons';
 
-const NavbarDashboard = ({user:{email, avatar}, logout}) => {
+const NavbarDashboard = () => {
 
     const handleLogout = async(e) => {
         e.preventDefault();
-
-        await logout()
-        .then( resp => {
-            console.log("vamos a salir de la sesión");
-            window.location = '/';
-        })
-        .catch( err => {
-            console.error(err);
-        });
     } 
+
     return (
         <nav className="nav justify-content-between pe-4 mt-3">
             <div></div>
@@ -55,8 +47,8 @@ const NavbarDashboard = ({user:{email, avatar}, logout}) => {
                 </div>
                 <div>
                     <img 
-                        src={avatar || 'http://via.placeholder.com/30'} 
-                        alt={email}
+                        src='http://via.placeholder.com/30' 
+                        alt='logo'
                         className="rounded-circle mx-2"
                     />
                 </div>
@@ -71,7 +63,7 @@ const NavbarDashboard = ({user:{email, avatar}, logout}) => {
                                 data-bs-toggle="dropdown" 
                                 aria-expanded="false"
                             >
-                                {email || 'john doe'}
+                                john doe
                             </Link>
                             <nav 
                                 className="dropdown-menu" 

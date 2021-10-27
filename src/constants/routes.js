@@ -1,14 +1,42 @@
 
-export const PATH = '/dashboard';
-export const CATEGORY = `${PATH}/categories`;
-export const CHARGE = `${PATH}/charges`;
-export const CLIENT = `${PATH}/clients`;
-export const COMPANY_SERVICE = `${PATH}/company_services`;
-export const COMPANY = `${PATH}/companies`;
-export const EMPLOYEE = `${PATH}/employees`;
-export const IDENTIFICATTION_TYPE = `${PATH}/identification_types`;
-export const PAYMENT_TYPE = `${PATH}/payment_types`;
-export const PAYMENT = `${PATH}/payments`;
-export const POLICY = `${PATH}/policies`;
-export const SERVICE = `${PATH}/services`;
-export const USER = `${PATH}/users`;
+export const DASHBOARD = '/dashboard';
+
+export const DASHBOARD_MY_COMPANY = `${DASHBOARD}/mycompany`;
+
+export const DASHBOARD_MY_HEADQUARTER_LIST = `${DASHBOARD}/headquarter`;
+export const DASHBOARD_MY_HEADQUARTER_NEW = `${DASHBOARD_MY_HEADQUARTER_LIST}/new`;
+export const DASHBOARD_MY_HEADQUARTER_DETAIL = `${DASHBOARD_MY_HEADQUARTER_LIST}/:id`;
+export const DASHBOARD_MY_HEADQUARTER_EMPLOYEES = `${DASHBOARD_MY_HEADQUARTER_LIST}/:id/employees`;
+export const DASHBOARD_MY_HEADQUARTER_EMPLOYEES_ROUTE = (id) => `${DASHBOARD_MY_HEADQUARTER_LIST}/${id}/employees`;
+export const DASHBOARD_MY_HEADQUARTER_DETAIL_ROUTE = (id) => `${DASHBOARD_MY_HEADQUARTER_LIST}/${id}`;
+
+export const DASHBOARD_EMPLOYEE_LIST = `${DASHBOARD}/employees`;
+export const DASHBOARD_EMPLOYEE_NEW = `${DASHBOARD_EMPLOYEE_LIST}/new`;
+export const DASHBOARD_EMPLOYEE_EDIT = `${DASHBOARD_EMPLOYEE_LIST}/:id`;
+export const DASHBOARD_EMPLOYEE_EDIT_ROUTE = (id) => `${DASHBOARD_EMPLOYEE_LIST}/${id}`;
+
+export const DASHBOARD_MY_SERVICES_LIST = `${DASHBOARD}/my_services`;
+export const DASHBOARD_MY_SERVICES_EDIT = `${DASHBOARD_MY_SERVICES_LIST}/:id`;
+export const DASHBOARD_MY_SERVICES_EDIT_ROUTE = (id) => `${DASHBOARD_MY_SERVICES_LIST}/${id}`;
+
+export const DASHBOARD_CLIENT_LIST = `${DASHBOARD}/clients`;
+export const DASHBOARD_CLIENT_NEW = `${DASHBOARD_CLIENT_LIST}/new`;
+export const DASHBOARD_CLIENT_EDIT = `${DASHBOARD_CLIENT_LIST}/:id`;
+export const DASHBOARD_CLIENT_EDIT_ROUTE = (id) => `${DASHBOARD_CLIENT_LIST}/${id}`;
+export const DASHBOARD_CLIENT_POLICY = `${DASHBOARD_CLIENT_LIST}/:id/policies`;
+export const DASHBOARD_CLIENT_POLICY_ROUTE = (id) => `${DASHBOARD_CLIENT_LIST}/${id}/policies`;
+
+export const DASHBOARD_POLICY_LIST = `${DASHBOARD}/policies`;
+export const DASHBOARD_POLICY_NEW = `${DASHBOARD_POLICY_LIST}/new`;
+export const DASHBOARD_POLICY_EDIT = `${DASHBOARD_POLICY_LIST}/:id`;
+export const DASHBOARD_POLICY_EDIT_ROUTE = (id) => `${DASHBOARD_POLICY_LIST}/${id}`;
+export const DASHBOARD_POLICY_PAYMENT_LIST = `${DASHBOARD_POLICY_EDIT}/payments`;
+export const DASHBOARD_POLICY_PAYMENT_LIST_ROUTES = (id) => `${DASHBOARD_POLICY_LIST}/${id}/payments`;
+
+export const DASHBOARD_PAYMENT_LIST = `${DASHBOARD}/payments`;
+
+export const DASHBOARD_SERVICE_CATEGORY_LIST = `${DASHBOARD}/service_categories`;
+
+export const DASHBOARD_SERVICE_LIST = `${DASHBOARD}/services`;
+
+export const DASHBOARD_INSURANCE_COMPANY_LIST = `${DASHBOARD}/insurance_companies`;
