@@ -85,11 +85,11 @@ const LoginPage = (props) => {
                                     </button>
                                 </div>
                             </form>
-                            <div className="text-center mt-3">
+                            {/* <div className="text-center mt-3">
                                 <Link to={'forgotPassword'}>
                                     ¿Olvidastes tu contraseña?
                                 </Link>
-                            </div>
+                            </div> */}
                         </Panel>
                     </div>
                 </div>

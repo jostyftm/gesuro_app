@@ -5,24 +5,30 @@ import DashboardLayout from 'layouts/DashboardLayout';
 
 // Componentes
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import Panel from 'components/Panel';
+import { 
+    DASHBOARD_CLIENT_EDIT_ROUTE 
+} from 'constants/routes';
+import ClientCreateModal from './new';
+import ClientDeleteModal from './delete';
 
-// Constants
-import {
-    USER    as USER_ROUTE
-} from 'constants/routes'
 
-const ClientList = () => {
+const ClientListPage = () => {
     return (
-        <DashboardLayout>
-            <div className="d-flex justify-content-between align-items-center">
-                <h1>Clientes</h1>
-            </div>
+        <DashboardLayout title="Clientes">
             <Panel>
                 <div className="d-flex justify-content-between">
-                    <div></div>
+                    <div>
+                        <button 
+                            className="btn btn-sm btn-primary"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#modalCreateClient"
+                        >
+                            Registrar cliente
+                        </button>
+                    </div>
                     <div className="input-group mb-3 w-25">
                         <input 
                             type="text" 
@@ -61,20 +67,51 @@ const ClientList = () => {
                                 <td>hoy</td>
                                 <td>hoy </td>
                                 <td>
-                                    <Link
-                                        className="btn btn-sm btn-outline-primary"
-                                        to={`${USER_ROUTE}/1/edit`}
-                                    >
-                                        <FontAwesomeIcon icon={faEye} />
-                                    </Link>
+                                    <div className="dropdown">
+                                        <button
+                                            className="btn btn-sm rounded-pill btn-primary"
+                                            data-bs-toggle="dropdown" 
+                                            aria-expanded="false"
+                                            type="button"
+                                            id="employee"
+                                        >
+                                            <FontAwesomeIcon 
+                                                icon={faEllipsisH}
+                                            />
+                                        </button>
+                                        <ul
+                                            className="dropdown-menu shadow border-0 rounded"
+                                        >
+                                            <li>
+                                                <Link
+                                                    to={DASHBOARD_CLIENT_EDIT_ROUTE(1)}
+                                                    className="dropdown-item"
+                                                >
+                                                    Ver cliente
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <button
+                                                    to="#"
+                                                    className="dropdown-item text-danger"
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#modalDeleteClient"
+                                                >
+                                                    Eliminar cliente
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </Panel>
+            <ClientCreateModal id="modalCreateClient" />
+            <ClientDeleteModal id="modalDeleteClient" />
         </DashboardLayout>
     );
 };
 
-export default ClientList;
+export default ClientListPage;

@@ -7,21 +7,27 @@ import DashboardLayout from 'layouts/DashboardLayout';
 import Panel from 'components/Panel';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { DASHBOARD_EMPLOYEE_EDIT_ROUTE } from 'constants/routes';
+import EmployeeCreateModal from './new';
+import EmployeeDeleteModal from './delete';
 
-import {
-    USER    as USER_ROUTE
-} from 'constants/routes'
 
-const EmployeeList = () => {
+const EmployeeListPage = () => {
     return (
-        <DashboardLayout>
-            <div className="d-flex justify-content-between align-items-center">
-                <h1>Empleados</h1>
-            </div>
+        <DashboardLayout title="Empleadosss">
             <Panel>
                 <div className="d-flex justify-content-between">
-                    <div></div>
+                    <div>
+                    <Link
+                        to="#"
+                        className="btn btn-sm btn-primary mt-2"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#modalCreateEmployee"
+                    >
+                        Nuevo empleado
+                    </Link>
+                    </div>
                     <div className="input-group mb-3 w-25">
                         <input 
                             type="text" 
@@ -60,20 +66,51 @@ const EmployeeList = () => {
                                 <td>hoy</td>
                                 <td>hoy </td>
                                 <td>
-                                    <Link
-                                        className="btn btn-sm btn-outline-primary"
-                                        to={`${USER_ROUTE}/1/edit`}
-                                    >
-                                        <FontAwesomeIcon icon={faEye} />
-                                    </Link>
+                                    <div className="dropdown">
+                                        <button
+                                            className="btn btn-sm rounded-pill btn-primary"
+                                            data-bs-toggle="dropdown" 
+                                            aria-expanded="false"
+                                            type="button"
+                                            id="employee"
+                                        >
+                                            <FontAwesomeIcon 
+                                                icon={faEllipsisH}
+                                            />
+                                        </button>
+                                        <ul
+                                            className="dropdown-menu shadow border-0 rounded"
+                                        >
+                                            <li>
+                                                <Link
+                                                    to={DASHBOARD_EMPLOYEE_EDIT_ROUTE(1)}
+                                                    className="dropdown-item"
+                                                >
+                                                    Ver empleado
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <button
+                                                    to="#"
+                                                    className="dropdown-item text-danger"
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#modalDeleteEmployee"
+                                                >
+                                                    Eliminar empleado
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </Panel>
+            <EmployeeCreateModal id="modalCreateEmployee" />
+            <EmployeeDeleteModal id="modalDeleteEmployee" />
         </DashboardLayout>
     );
 }
 
-export default EmployeeList;
+export default EmployeeListPage;

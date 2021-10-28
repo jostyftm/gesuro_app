@@ -13,26 +13,13 @@ import {
     POLICY as POLICY_ROUTE
 } from 'constants/routes';
 import { Link } from 'react-router-dom';
+import EditPolicyLayout from './layout/editLayout';
 
 const PolicyEdit = () => {
 
-    const tabs = [
-        {
-            title: 'Información de la poliza',
-            to: `${POLICY_ROUTE}/1/edit`,
-            disabled:false,
-        },
-        {
-            title: 'Pagos',
-            to: `${POLICY_ROUTE}/1/payments`,
-            disabled:false,
-        }
-    ];
-
-
     return (
-        <PolicyEditLayout tabs={tabs} title='Editar poliza'>
-            <div className="container">
+        <EditPolicyLayout>
+           <div className="container">
                 <form>
                     {/* Policy information */}
                     <div className="row my-5">
@@ -46,45 +33,54 @@ const PolicyEdit = () => {
                         <div className="col-md-6">
                             <div className="row">
                                 <div className="mb-3 col">
-                                    <label className="form-label">Producto</label>
-                                    <select className="form-select">
-                                        <option>- Seleccione un producto -</option>
-                                    </select>
+                                    <div className="form-floating">
+                                        <select className="form-select">
+                                            <option>- Seleccione un producto -</option>
+                                        </select>
+                                        <label className="form-label">Producto</label>
+                                    </div>
                                 </div>
                                 <div className="mb-3 col">
-                                    <label className="form-label">Aseguradora</label>
-                                    <select className="form-select">
-                                        <option>- Seleccione una aseguradora -</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="mb-3 col">
-                                    <label className="form-label">Cliente</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="jhon doe"
-                                    />
+                                    <div className="form-floating">
+                                        <select className="form-select">
+                                            <option>- Seleccione un producto -</option>
+                                        </select>
+                                        <label className="form-label">Producto</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="mb-3 col">
-                                    <label className="form-label">
-                                        Objeto asegurado
-                                        <FontAwesomeIcon icon={faInfoCircle} />
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="11122233"
-                                    />
+                            <div className="row mb-3">
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <input 
+                                            type="text"
+                                            name="identification_number"
+                                            className="form-control"
+                                            placeholder="Perez"
+                                        />
+                                        <label>Cliente</label>
+                                    </div>
                                 </div>
-                                <div className="mb-3 col">
-                                    <label className="form-label">Vigencia</label>
-                                    <select className="form-select">
-                                        <option>- Seleccione una vigencia -</option>
-                                    </select>
+                            </div>
+                            <div className="row mb-3">
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <input 
+                                            type="text"
+                                            name="identification_number"
+                                            className="form-control"
+                                            placeholder="Perez"
+                                        />
+                                        <label>Objeto asegurado</label>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <select className="form-select">
+                                            <option>- Seleccione una vigencia -</option>
+                                        </select>
+                                        <label className="form-label">Vigencia</label>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
@@ -132,68 +128,89 @@ const PolicyEdit = () => {
                             </p>
                         </div>
                         <div className="col-md-6">
-                            <div className="row">
-                                <div className="mb-3 col">
-                                    <label className="form-label">Prima</label>
-                                    <input 
-                                        type="number"
-                                        className="form-control"
-                                        placeholder="50.000"
-                                    />
+                            <div className="row mb-3">
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <input 
+                                            type="number"
+                                            name="prima"
+                                            className="form-control"
+                                            placeholder="10000"
+                                        />
+                                        <label className="form-label">Valor</label>
+                                    </div>
                                 </div>
-                                <div className="mb-3 col">
-                                    <label className="form-label">Otros gastos</label>
-                                    <input 
-                                        type="number"
-                                        className="form-control"
-                                        placeholder="0"
-                                    />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="mb-3 col">
-                                    <label className="form-label">% IVA</label>
-                                    <input 
-                                        type="number"
-                                        className="form-control"
-                                        placeholder="19%"
-                                    />
-                                </div>
-                                <div className="mb-3 col">
-                                    <label className="form-label">Valor IVA</label>
-                                    <input 
-                                        type="number"
-                                        className="form-control"
-                                        placeholder="9500"
-                                    />
+                                <div className="col">
+                                    <div className="form-floating">
+                                        <input 
+                                            type="number"
+                                            name="prima"
+                                            className="form-control"
+                                            placeholder="10000"
+                                        />
+                                        <label className="form-label">Otros gastos</label>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="mb-3 col">
-                                    <label className="form-label">% Comision agencia</label>
-                                    <input 
-                                        type="number"
-                                        className="form-control"
-                                        placeholder="20%"
-                                    />
+                                    <div className="form-floating">
+                                        <input 
+                                            type="number"
+                                            name="prima"
+                                            className="form-control"
+                                            placeholder="10000"
+                                        />
+                                        <label className="form-label">IVA 19%</label>
+                                    </div>
                                 </div>
                                 <div className="mb-3 col">
-                                    <label className="form-label">Valor comisión agencia</label>
-                                    <input 
-                                        type="number"
-                                        className="form-control"
-                                        placeholder="10.000"
-                                    />
+                                    <div className="form-floating">
+                                        <input 
+                                            type="number"
+                                            name="prima"
+                                            className="form-control"
+                                            placeholder="10000"
+                                        />
+                                        <label className="form-label">Valor IVA </label>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="mb-3 col">
-                                    <label className="form-label">Total</label>
-                                    <input 
-                                        type="number"
-                                        className="form-control"
-                                        placeholder="69.500"
-                                    />
+                                    <div className="form-floating">
+                                        <input 
+                                            type="number"
+                                            name="prima"
+                                            className="form-control"
+                                            placeholder="10000"
+                                        />
+                                        <label className="form-label">% Comisión agencia</label>
+                                    </div>
+                                </div>
+                                <div className="mb-3 col">
+                                    <div className="form-floating">
+                                        <input 
+                                            type="number"
+                                            name="prima"
+                                            className="form-control"
+                                            placeholder="10000"
+                                        />
+                                        <label className="form-label">Valor commisión agencia</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="mb-3 col">
+                                    <div className="form-floating">
+                                        <input 
+                                            type="number"
+                                            name="prima"
+                                            className="form-control"
+                                            placeholder="10000"
+                                        />
+                                        <label className="form-label">Total</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -211,28 +228,34 @@ const PolicyEdit = () => {
                         <div className="col-md-6">
                             <div className="row">
                                 <div className="col mb-3">
-                                    <label className="form-label">Empleado</label>
-                                    <select className="form-select">
-                                        <option>- Seleccione un empleado -</option>
-                                    </select>
+                                    <div className="form-floating">
+                                        <select className="form-select">
+                                            <option>- Seleccione un empleado -</option>
+                                        </select>
+                                        <label className="form-label">Empleado</label>
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col mb-3">
-                                    <label className="form-label">% Comisión empleado</label>
-                                    <input 
-                                        type="number"
-                                        className="form-control"
-                                        placeholder="40"
-                                    />
+                                    <div className="form-floating">
+                                        <input 
+                                            type="number"
+                                            className="form-control"
+                                            placeholder="40"
+                                        />
+                                        <label className="form-label">% Comisión empleado</label>
+                                    </div>
                                 </div>
                                 <div className="col mb-3">
-                                    <label className="form-label">% Valor comisión empleado</label>
-                                    <input 
-                                        type="number"
-                                        className="form-control"
-                                        placeholder="40"
-                                    />
+                                    <div className="form-floating">
+                                        <input 
+                                            type="number"
+                                            className="form-control"
+                                            placeholder="40"
+                                        />
+                                        <label className="form-label">Comisión empleado</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -250,9 +273,11 @@ const PolicyEdit = () => {
                         <div className="col-md-6">
                             <div className="row">
                                 <div className="col mb-3">
-                                    <label className="form-label">Observación</label>
-                                    <textarea className="form-control">
-                                    </textarea>
+                                    <div className="form-floating">
+                                        <textarea className="form-control">
+                                        </textarea>
+                                        <label className="form-label">Observación</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -262,18 +287,18 @@ const PolicyEdit = () => {
                             type="submit"
                             className="btn btn-primary mx-3"
                         >
-                            Actualizar poliza
+                            Crear poliza
                         </button>
                         <Link
-                            to={POLICY_ROUTE}
-                            className="btn btn-light"
+                            to=""
+                            className="btn btn-light border"
                         >
                             Cancelar
                         </Link>
                     </div>
                 </form>
             </div>
-        </PolicyEditLayout>
+        </EditPolicyLayout>
     )
 }
 

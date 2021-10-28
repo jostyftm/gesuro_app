@@ -1,0 +1,50 @@
+
+
+$primary: #48bf5c;
+$body-color: #555d61;
+
+:root {
+    --bs-body-bg: #f2f4f5;
+    --bs-secondary: #1c242b;
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+body { 
+    background-color: var(--bs-body-bg);
+    color: #555d61;
+}
+
+
+.dropdown-item.active, .dropdown-item:active{
+    background-color: #e9ecef;
+    color: #555d61;
+}
+
+.form-control, .form-select {
+    border-width: 2px;
+}
+
+.form-control:focus, .form-select:focus, .form-check-input:focus {
+    box-shadow: none;
+}
+
+.form-floating > .form-control:focus ~ label {
+    color: $primary;
+}
+
+.form-floating > .form-control.is-invalid ~ label {
+    color: #dc3545;
+}
+
+.btn {
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0, .075) !important;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    color: white;
+}
+
+.text-sidebar{
+    font-size: 14px;
+}
