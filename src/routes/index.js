@@ -27,8 +27,12 @@ import {
     DASHBOARD_POLICY_NEW,
     DASHBOARD_POLICY_PAYMENT_LIST,
     DASHBOARD_SERVICE_CATEGORY_LIST,
-    DASHBOARD_SERVICE_LIST
+    DASHBOARD_SERVICE_LIST,
+    LOGIN_PAGE
 } from 'constants/routes';
+
+//
+import LoginPage from 'pages/auth/LoginPage';
 
 // Pages
 import DASHBOARD_HOME_PAGE from 'pages/admin/home/index';
@@ -68,6 +72,9 @@ const Routes = () => {
                 {/* Home */}
                 <Route exact path={DASHBOARD} component={DASHBOARD_HOME_PAGE} />
                 
+                {/* Login page */}
+                <Route exac path={LOGIN_PAGE} component={LoginPage} />
+
                 {/* My company */}
                 <Route exact path={DASHBOARD_MY_COMPANY} component={DASHBOARD_MY_COMPANY_PAGE} />
 
