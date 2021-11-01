@@ -1,16 +1,18 @@
 import React from 'react';
 import { 
-    Route,
     Switch,
     BrowserRouter as Router
 } from 'react-router-dom';
+
+// 
+import PublicRoute from './public';
+import PrivateRoute from './private';
 
 // Constants
 import { 
     DASHBOARD, 
     DASHBOARD_CLIENT_EDIT, 
-    DASHBOARD_CLIENT_LIST, 
-    DASHBOARD_CLIENT_NEW, 
+    DASHBOARD_CLIENT_LIST,
     DASHBOARD_CLIENT_POLICY, 
     DASHBOARD_EMPLOYEE_EDIT, 
     DASHBOARD_EMPLOYEE_LIST, 
@@ -64,56 +66,59 @@ import ServiceListPage from 'pages/admin/service/list';
 
 import InsuranceCompanyListPage from 'pages/admin/insuranceCompany/list';
 
+
+
+
 const Routes = () => {
     
     return (
         <Router>
             <Switch>
                 {/* Home */}
-                <Route exact path={DASHBOARD} component={DASHBOARD_HOME_PAGE} />
+                <PrivateRoute exact path={DASHBOARD} component={DASHBOARD_HOME_PAGE} />
                 
                 {/* Login page */}
-                <Route exac path={LOGIN_PAGE} component={LoginPage} />
+                <PublicRoute exac path={LOGIN_PAGE} component={LoginPage} />
 
                 {/* My company */}
-                <Route exact path={DASHBOARD_MY_COMPANY} component={DASHBOARD_MY_COMPANY_PAGE} />
+                <PrivateRoute exact path={DASHBOARD_MY_COMPANY} component={DASHBOARD_MY_COMPANY_PAGE} />
 
                 {/* Headquarters */}
-                <Route exact path={DASHBOARD_MY_HEADQUARTER_LIST} component={HeadquaterListPage} />
-                <Route exact path={DASHBOARD_MY_HEADQUARTER_DETAIL} component={HeadquarterDetailPage} />
-                <Route exact path={DASHBOARD_MY_HEADQUARTER_EMPLOYEES} component={HeadquarterEmployeeListPage} />
+                <PrivateRoute exact path={DASHBOARD_MY_HEADQUARTER_LIST} component={HeadquaterListPage} />
+                <PrivateRoute exact path={DASHBOARD_MY_HEADQUARTER_DETAIL} component={HeadquarterDetailPage} />
+                <PrivateRoute exact path={DASHBOARD_MY_HEADQUARTER_EMPLOYEES} component={HeadquarterEmployeeListPage} />
                 
                 {/* Employees */}
-                <Route exact path={DASHBOARD_EMPLOYEE_LIST} component={EmployeeListPage} />
-                <Route exact path={DASHBOARD_EMPLOYEE_EDIT} component={EmployeeEditPage} />
+                <PrivateRoute exact path={DASHBOARD_EMPLOYEE_LIST} component={EmployeeListPage} />
+                <PrivateRoute exact path={DASHBOARD_EMPLOYEE_EDIT} component={EmployeeEditPage} />
             
                 {/* Clients */}
-                <Route exact path={DASHBOARD_CLIENT_LIST} component={ClientListPage} />
-                <Route exact path={DASHBOARD_CLIENT_EDIT} component={ClientEditPage} />
-                <Route exact path={DASHBOARD_CLIENT_POLICY} component={ClientPolicyPage} />
+                <PrivateRoute exact path={DASHBOARD_CLIENT_LIST} component={ClientListPage} />
+                <PrivateRoute exact path={DASHBOARD_CLIENT_EDIT} component={ClientEditPage} />
+                <PrivateRoute exact path={DASHBOARD_CLIENT_POLICY} component={ClientPolicyPage} />
 
                 {/* Policies */}
-                <Route exact path={DASHBOARD_POLICY_LIST} component={PolicyListPage} />
-                <Route exact path={DASHBOARD_POLICY_NEW} component={PolicyCreatePage} />
-                <Route exact path={DASHBOARD_POLICY_EDIT} component={PolicyEditPage} />
-                <Route exact path={DASHBOARD_POLICY_PAYMENT_LIST} component={PolicyPaymentPage} />
+                <PrivateRoute exact path={DASHBOARD_POLICY_LIST} component={PolicyListPage} />
+                <PrivateRoute exact path={DASHBOARD_POLICY_NEW} component={PolicyCreatePage} />
+                <PrivateRoute exact path={DASHBOARD_POLICY_EDIT} component={PolicyEditPage} />
+                <PrivateRoute exact path={DASHBOARD_POLICY_PAYMENT_LIST} component={PolicyPaymentPage} />
 
                 {/* My services */}
-                <Route exact path={DASHBOARD_MY_SERVICES_LIST} component={MyServiceListPage} />
-                <Route exact path={DASHBOARD_MY_SERVICES_EDIT} component={MyServiceEditPage} />
+                <PrivateRoute exact path={DASHBOARD_MY_SERVICES_LIST} component={MyServiceListPage} />
+                <PrivateRoute exact path={DASHBOARD_MY_SERVICES_EDIT} component={MyServiceEditPage} />
 
 
                 {/* Payments */}
-                <Route exact path={DASHBOARD_PAYMENT_LIST} component={PaymentListPage} />
+                <PrivateRoute exact path={DASHBOARD_PAYMENT_LIST} component={PaymentListPage} />
                 
                 {/* Service category */}
-                <Route exact path={DASHBOARD_SERVICE_CATEGORY_LIST} component={ServiceCategoryListPage} />
+                <PrivateRoute exact path={DASHBOARD_SERVICE_CATEGORY_LIST} component={ServiceCategoryListPage} />
                 
                 {/* Service */}
-                <Route exact path={DASHBOARD_SERVICE_LIST} component={ServiceListPage} />
+                <PrivateRoute exact path={DASHBOARD_SERVICE_LIST} component={ServiceListPage} />
                 
                 {/* Insurance Company */}
-                <Route exact path={DASHBOARD_INSURANCE_COMPANY_LIST} component={InsuranceCompanyListPage} />
+                <PrivateRoute exact path={DASHBOARD_INSURANCE_COMPANY_LIST} component={InsuranceCompanyListPage} />
             </Switch>
         </Router>
     );

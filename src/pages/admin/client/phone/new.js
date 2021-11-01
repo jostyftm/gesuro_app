@@ -2,38 +2,34 @@ import Modal from "components/Modal";
 import Spinner from "components/Spiner";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
-import { updatePhone } from "services/phoneService";
+import { createPhone, updatePhone } from "services/phoneService";
 import { cathErrors } from "utils/errors";
 
-const PhoneEditModal = ({phone, onUpdate,...rest}) => {
+const PhoneCreateModal = ({address, onCreate,...rest}) => {
 
     const [isSaving, setIsSaving] = useState(false);
     const [errors, setErrors] = useState([]);
 
-    const formUpdatePhoneRef = useRef(null);
+    const formCreatePhoneRef = useRef(null);
 
-    const handlePpdatePhone = (e) => {
+    const handleCreatePhone = (e) => {
         e.preventDefault();
 
-        const formData = new FormData(formUpdatePhoneRef.current);
-
-        let data = {
-            phone: formData.get('phone'),
-        }
-
+        const formData = new FormData(formCreatePhoneRef.current);
+        
         setIsSaving(true)
         setErrors([])
-        updatePhone(phone.id, data)
+        createPhone(formData)
         .then(resp => {
             setIsSaving(false)
-            onUpdate(true)
-            toast("Teléfono actualizado")
-            document.querySelector("#btnCancelUpdatePhone").click();
-            formUpdatePhoneRef.current.reset();
+            onCreate(true)
+            toast("Teléfono creado")
+            document.querySelector("#btnCancelCreatePhone").click();
+            formCreatePhoneRef.current.reset();
         })
         .catch(err => {
             setIsSaving(false)
-            onUpdate(false)
+            onCreate(false)
 
             if(err.status === 422)
                 setErrors(err.data.data)
@@ -48,16 +44,16 @@ const PhoneEditModal = ({phone, onUpdate,...rest}) => {
             {...rest}
         >
             <form
-                onSubmit={(e) => {handlePpdatePhone(e)}}
-                ref={formUpdatePhoneRef}
+                onSubmit={(e) => {handleCreatePhone(e)}}
+                ref={formCreatePhoneRef}
             >
                 <div className="form-floating mb-3">
+                    <input type="hidden" value={address.id} name="address_id"/>
                     <input 
                         type="text"
                         name="phone"
                         className="form-control is-invalid"
                         placeholder="Pepito"
-                        defaultValue={phone.phone}
                     />
                     <label>Teléfono</label>
                     <div className="invalid-feedback">
@@ -69,12 +65,12 @@ const PhoneEditModal = ({phone, onUpdate,...rest}) => {
                         className="btn btn-primary"
                         disabled={isSaving}
                     >
-                        {isSaving ? <Spinner /> : 'Actualizar teléfono'}
+                        {isSaving ? <Spinner /> : 'Crear teléfono'}
                     </button>
                     <button 
                         className="btn btn-default" 
                         data-bs-dismiss="modal"
-                        id="btnCancelUpdatePhone"
+                        id="btnCancelCreatePhone"
                         disabled={isSaving}
                         >
                         Cancelar
@@ -85,4 +81,4 @@ const PhoneEditModal = ({phone, onUpdate,...rest}) => {
     );
 }
 
-export default PhoneEditModal;
+export default PhoneCreateModal;

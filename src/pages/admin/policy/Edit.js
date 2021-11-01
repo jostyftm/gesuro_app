@@ -1,17 +1,14 @@
 import React from 'react';
 
-// Layout
-import PolicyEditLayout from 'layouts/PolicyEditLayout';
-
 // Components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileMedicalAlt, faHandHoldingUsd, faIdCardAlt, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { 
+    faFileMedicalAlt, 
+    faHandHoldingUsd, 
+    faIdCardAlt, 
+} from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
-// Constants
-import {
-    POLICY as POLICY_ROUTE
-} from 'constants/routes';
 import { Link } from 'react-router-dom';
 import EditPolicyLayout from './layout/editLayout';
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import Panel from 'components/Panel';
-import { faEllipsisH, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Layout

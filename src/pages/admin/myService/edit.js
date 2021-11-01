@@ -119,7 +119,6 @@ const MyServiceEditPage = () => {
                                             <li>
                                                 <button
                                                     className="dropdown-item"
-                                                    className="dropdown-item"
                                                     data-bs-toggle="modal" 
                                                     data-bs-target="#modalEditInsurance"
                                                 >

@@ -2,23 +2,36 @@ import React, { useRef, useState } from 'react';
 
 // Layout
 import DefaultLayout from 'layouts/DefaultLayout';
-import { Link } from 'react-router-dom';
-import useAuth from 'hooks/UseAuth';
 
 // Services
-import {Login} from 'services/AuthService';
+import {login} from 'services/AuthService';
+
+// Components
+import Spinner from 'components/Spiner';
 import Panel from 'components/Panel';
+
+// Helpers
+import { saveUserSession } from 'utils/AuthUtil';
+
+// Hooks
+import { useHistory } from 'react-router';
+import useAuth from 'hooks/UseAuth';
+
+// Constant
+import { DASHBOARD } from 'constants/routes';
 
 const LoginPage = (props) => {
 
     // States
     const [isLoading, setIsLoading] = useState(false);
-
-    // Hooks
-    const {setIsLogged} = useAuth();
+    const [errors, setErrors] = useState([]);
 
     // Ref
     const formLoginRef = useRef(null);
+
+    // Hooks
+    const {setUserLogged, setIsLogged} = useAuth();
+    const history = useHistory();
 
     // Functions
     const handleFormlogin = async(e) => {
@@ -26,22 +39,27 @@ const LoginPage = (props) => {
 
         const formDataLogin = new FormData(formLoginRef.current);
 
-        let data = {
-            email: formDataLogin.get('email'),
-            password: formDataLogin.get('password'),
-        };
-
         setIsLoading(true);
-        await Login(data)
+        setErrors([])
+        login(formDataLogin)
         .then(resp => {
-            setIsLogged(true);
             setIsLoading(false);
             
-            window.location = '/dashboard';
+            setUserLogged(resp.data.user)
+            setIsLogged(true);
+
+            saveUserSession(resp.data);
+            history.push(DASHBOARD)
         })
         .catch(err => {
-            console.error(err)
-        })
+            setIsLoading(false);
+
+            if(err.status === 422)
+                setErrors(err.data.data);
+            
+            console.log(err)
+        });
+        
     }
 
     return(
@@ -58,22 +76,35 @@ const LoginPage = (props) => {
                                 />
                                 <h5 className="my-3">Iniciar Sesión</h5>
                             </div>
-                            <form ref={formLoginRef} onSubmit={handleFormlogin}>
+                            <form 
+                                ref={formLoginRef} 
+                                onSubmit={handleFormlogin}
+                            >
                                 <div className="mb-3">
                                     <label>Correo electronico</label>
                                     <input 
                                         type="text" 
                                         name="email" 
-                                        className="form-control"
+                                        className={errors && errors.email ? `form-control is-invalid` : `form-control`} 
                                     />
+                                    {errors && errors.email &&(
+                                        <div className="invalid-feedback">
+                                            {errors.email}
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="mb-3">
                                     <label>Contraseña</label>
                                     <input 
                                         type="password" 
                                         name="password" 
-                                        className="form-control"
+                                        className={errors && errors.password ? `form-control is-invalid` : `form-control`} 
                                     />
+                                    {errors && errors.password &&(
+                                        <div className="invalid-feedback">
+                                            {errors.password}
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="d-grid">
                                     <button
@@ -81,15 +112,10 @@ const LoginPage = (props) => {
                                         className="btn btn-primary"
                                         disabled={isLoading}
                                     >
-                                        {isLoading ? 'Iniciando sesión' : 'Iniciar Sesión'}
+                                        {isLoading ? <Spinner /> : 'Iniciar Sesión'}
                                     </button>
                                 </div>
                             </form>
-                            {/* <div className="text-center mt-3">
-                                <Link to={'forgotPassword'}>
-                                    ¿Olvidastes tu contraseña?
-                                </Link>
-                            </div> */}
                         </Panel>
                     </div>
                 </div>

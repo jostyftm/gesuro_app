@@ -1,31 +1,18 @@
-import { removeUserLogged, saveUserLogged } from 'utils/AuthUtil';
+import API from './axiosServices';
+import {
+    WEB_URL
+} from 'constants/enviroments';
+import axios from 'axios';
 
-export const Login = ({email, password}) => {
+const endpoint = '/auth';
 
-    return new Promise ( (resolve, reject) => {
-
-        try {
-            setTimeout( () => {
-                saveUserLogged({email});
-                resolve(email);
-            }, 2000);
-        }catch(err) {
-            reject(err)
-        }
-    });
-}
-
-export const Logout = () => {
-    
-    return new Promise ( (resolve, reject) => {
-
-        try {
-            setTimeout( () => {
-                removeUserLogged();
-                resolve();
-            }, 1000);
-        }catch(err) {
-            reject(err)
-        }
-    });
+export const login = (data) => {
+    return new Promise((resolve, reject) =>{
+        axios.get(`${WEB_URL}/sanctum/csrf-cookie`)
+        .then(resp => {
+            API.post(`${endpoint}/login`, data)
+            .then(resp => resolve(resp.data))
+            .catch(err => reject(err.response))
+        })
+    })
 }

@@ -8,7 +8,8 @@ $body-color: #555d61;
     --bs-secondary: #1c242b;
 }
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/react-toastify/dist/ReactToastify.min.css";
 
 body { 
     background-color: var(--bs-body-bg);
@@ -48,3 +49,11 @@ body {
 .text-sidebar{
     font-size: 14px;
 }
+
+.Toastify__toast--default {
+    background-color: $primary
+}
+
+.Toastify__toast--error {
+    background-color: #dc3545;
+} 

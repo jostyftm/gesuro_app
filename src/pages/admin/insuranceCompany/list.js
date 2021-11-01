@@ -2,7 +2,10 @@ import React from 'react';
 
 // Components
 import Panel from 'components/Panel';
-import { faEllipsisH, faExternalLinkAlt, faEye } from '@fortawesome/free-solid-svg-icons';
+import { 
+    faEllipsisH, 
+    faExternalLinkAlt 
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Layout
@@ -67,6 +70,7 @@ const InsuranceListPage = () => {
                                     <a
                                         href="https://google.com"
                                         target="_blank"
+                                        rel="noreferrer"
                                     >
                                         <FontAwesomeIcon icon={faExternalLinkAlt} />
                                     </a>
