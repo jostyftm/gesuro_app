@@ -7,6 +7,7 @@ export const AuthContextProvider = ({children}) => {
 
     const [isLogged, setIsLogged] = useState(false);
     const [userLogged, setUserLogged] = useState({});
+    const [companyId, setCompanyId] = useState(1);
 
     const getUserAuth = async () => {
 
@@ -31,7 +32,8 @@ export const AuthContextProvider = ({children}) => {
         isLogged,
         setIsLogged,
         userLogged,
-        setUserLogged
+        setUserLogged,
+        companyId
     };
 
      return (

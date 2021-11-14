@@ -33,7 +33,7 @@ const MyCompanyIndex = () => {
                                 <input 
                                     type="text"
                                     name="name"
-                                    className="form-control is-invalid"
+                                    className="form-control"
                                     placeholder="Seguros don pepito S.A.S"
                                     id="nameCompany"
                                 />

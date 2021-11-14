@@ -16,11 +16,11 @@ const EmployeeCreateModal = ({...rest}) => {
                             <input 
                                 type="text"
                                 name="name"
-                                className="form-control is-invalid"
+                                className="form-control"
                                 placeholder="Pepito"
                             />
                             <label>Nombre</label>
-                            <div class="invalid-feedback">
+                            <div className="invalid-feedback">
                                 Please enter a message in the textarea.
                             </div>
                         </div>
@@ -34,7 +34,7 @@ const EmployeeCreateModal = ({...rest}) => {
                                 placeholder="Perez"
                             />
                             <label>Apellidos</label>
-                            <div class="invalid-feedback">
+                            <div className="invalid-feedback">
                                 Please enter a message in the textarea.
                             </div>
                         </div>

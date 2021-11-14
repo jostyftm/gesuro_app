@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Components
 import Panel from 'components/Panel';
@@ -13,12 +13,55 @@ import DashboardLayout from 'layouts/DashboardLayout';
 import InsuraceCompnayCreateModal from './new';
 import InsuraceCompnayEditModal from './edit';
 import InsuranceCompanyDeleteModal from './delete';
+import { allInsuranceCompany } from 'services/insuranceCompany';
+import { cathErrors } from 'utils/errors';
+import Pagination from 'components/Pagination';
+import Moment from 'react-moment';
+import Spinner from 'components/Spiner';
 
 // Constants
 
 
 const InsuranceListPage = () => {
 
+    const [companies, setCompanies] = useState([]);
+    const [links, setLinks] = useState([]);
+    const [query, setQuery] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [isLoading, setIsLoading] =   useState(false);
+    const [companySelected, setCompanySelected] = useState({});
+
+    const fetchCompany = () => {
+
+        setIsLoading(true);
+        allInsuranceCompany({
+            params: {
+                paginate:true,
+                limit:10,
+                page:currentPage
+            }
+        })
+        .then(resp => {
+            setIsLoading(false);
+            setCompanies(resp.data.data)
+            setLinks(resp.data.links)
+        })
+        .catch(err => {
+            setIsLoading(false);
+
+            cathErrors(err);
+        })
+    }
+
+    useEffect(() => {
+
+        fetchCompany();
+
+        return () => {
+            setCompanies([])
+            setLinks([])
+        }
+    }, [query, currentPage])
     return (
         <DashboardLayout>
             <Panel>
@@ -62,66 +105,111 @@ const InsuranceListPage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>SURA S.A.S</td>
-                                <td>info@sura.com</td>
-                                <td>032145875</td>
-                                <td>
-                                    <a
-                                        href="https://google.com"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        <FontAwesomeIcon icon={faExternalLinkAlt} />
-                                    </a>
-                                </td>
-                                <td>hoy</td>
-                                <td>hoy </td>
-                                <td>
-                                    <div className="dropdown">
-                                        <button
-                                            className="btn btn-sm rounded-pill btn-primary"
-                                            data-bs-toggle="dropdown" 
-                                            aria-expanded="false"
-                                            type="button"
-                                            id="employee"
+                            {isLoading && (
+                                <tr>
+                                    <td colSpan="7">
+                                        <Spinner color="primary" />
+                                    </td>
+                                </tr>
+                            )}
+                            {companies && companies.map((company, index) =>(
+                                <tr
+                                    key={index}
+                                >
+                                    <td>{company.name}</td>
+                                    <td>{company.email}</td>
+                                    <td>{company.phone}</td>
+                                    <td>
+                                        <a
+                                            href={company.website}
+                                            target="_blank"
+                                            rel="noreferrer"
                                         >
                                             <FontAwesomeIcon 
-                                                icon={faEllipsisH}
+                                                icon={faExternalLinkAlt} 
                                             />
-                                        </button>
-                                        <ul
-                                            className="dropdown-menu shadow border-0 rounded"
-                                        >
-                                            <li>
-                                                <button
-                                                    className="dropdown-item"
-                                                    data-bs-toggle="modal" 
-                                                    data-bs-target="#modalEditInsuranceConpany"
-                                                >
-                                                    Editar aseguradora
-                                                </button>
-                                            </li>
-                                            <li>
-                                                <button
-                                                    className="dropdown-item text-danger"
-                                                    data-bs-toggle="modal" 
-                                                    data-bs-target="#modalDeleteInsuranceCompany"
-                                                >
-                                                    Eliminar aseguradora
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <Moment format="LLL">
+                                            {company.created_at}
+                                        </Moment>
+                                    </td>
+                                    <td>
+                                        <Moment format="LLL">
+                                            {company.updated_at}
+                                        </Moment>
+                                    </td>
+                                    <td>
+                                        <div className="dropdown">
+                                            <button
+                                                className="btn btn-sm rounded-pill btn-primary"
+                                                data-bs-toggle="dropdown" 
+                                                aria-expanded="false"
+                                                type="button"
+                                                id="employee"
+                                            >
+                                                <FontAwesomeIcon 
+                                                    icon={faEllipsisH}
+                                                />
+                                            </button>
+                                            <ul
+                                                className="dropdown-menu shadow border-0 rounded"
+                                            >
+                                                <li>
+                                                    <button
+                                                        className="dropdown-item"
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#modalEditInsuranceConpany"
+                                                        onClick={(e) => {setCompanySelected(company)}}
+                                                    >
+                                                        Editar aseguradora
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button
+                                                        className="dropdown-item text-danger"
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#modalDeleteInsuranceCompany"
+                                                        onClick={(e) => {setCompanySelected(company)}}
+                                                    >
+                                                        Eliminar aseguradora
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
+                    <div>
+                        <Pagination
+                            links={links} 
+                            handleClickPagination={
+                                (e, page) => {
+                                    e.preventDefault();
+                                    setCurrentPage(page)
+                                }
+                            } 
+                        />
+                    </div>
                 </div>
             </Panel>
-            <InsuraceCompnayCreateModal id="modalCreateInsuraceCompany" />
-            <InsuraceCompnayEditModal id="modalEditInsuranceConpany" />
-            <InsuranceCompanyDeleteModal id="modalDeleteInsuranceCompany" />
+            <InsuraceCompnayCreateModal 
+                id="modalCreateInsuraceCompany" 
+                onCreate={(result) =>{if(result) fetchCompany()}}
+            />
+            <InsuraceCompnayEditModal 
+                id="modalEditInsuranceConpany" 
+                company={companySelected}
+                onUpdate={(result) => {if(result) fetchCompany()}}
+            />
+            <InsuranceCompanyDeleteModal 
+                id="modalDeleteInsuranceCompany" 
+                company={companySelected}
+                onDelete={(result) => {if(result) fetchCompany()}}
+            />
         </DashboardLayout>
     );
 }

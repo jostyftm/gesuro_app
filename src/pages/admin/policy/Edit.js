@@ -284,7 +284,7 @@ const PolicyEdit = () => {
                             type="submit"
                             className="btn btn-primary mx-3"
                         >
-                            Crear poliza
+                            Actualizar poliza
                         </button>
                         <Link
                             to=""

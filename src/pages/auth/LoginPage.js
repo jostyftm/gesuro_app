@@ -70,7 +70,7 @@ const LoginPage = (props) => {
                         <Panel>
                             <div className="text-center">
                                 <img 
-                                    src="https://via.placeholder.com/100" 
+                                    src="https://scontent-bog1-1.xx.fbcdn.net/v/t1.18169-9/539576_524004967646039_649572132_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeEeXS2hmRMufCi-iV8T6MsFK6i7FUKkzsIrqLsVQqTOwqICZJNrQ3nJJKuQY_t4Z3k&_nc_ohc=UfuLlKpd0eoAX816564&_nc_ht=scontent-bog1-1.xx&oh=73d758851810a09841742e84f4fa9ff6&oe=61A97610" 
                                     className ="rounded-circle"
                                     alt="imgagen de inicio de sesión"
                                 />

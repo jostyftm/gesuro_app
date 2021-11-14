@@ -15,7 +15,7 @@ import EmployeeDeleteModal from './delete';
 
 const EmployeeListPage = () => {
     return (
-        <DashboardLayout title="Empleadosss">
+        <DashboardLayout title="Empleados">
             <Panel>
                 <div className="d-flex justify-content-between">
                     <div>
