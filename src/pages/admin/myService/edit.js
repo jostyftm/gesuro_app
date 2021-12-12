@@ -238,7 +238,7 @@ const MyServiceEditPage = () => {
                                     </td>
                                 </tr>
                             )}
-                            {insurrances && insurrances.map((insurrance, index) =>(
+                            {!isLoading && insurrances && insurrances.map((insurrance, index) =>(
                                 <tr
                                     key={index}
                                 >
