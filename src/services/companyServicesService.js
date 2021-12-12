@@ -50,6 +50,14 @@ export const updateServiceCompany = (id, data) => {
     })
 }
 
+export const deleteServiceCompany = (id) => {
+    return new Promise((resolve, reject) => {
+        API.delete(`${endpoint}/${id}`)
+        .then(resp => resolve(resp.data))
+        .catch(err => reject(err.response))
+    })
+}
+
 export const addCompanyServiceCompany = (id, data) => {
     return new Promise((resolve, reject) => {
         API.post(`${endpoint}/${id}/addInsurranceCompany`, data)
