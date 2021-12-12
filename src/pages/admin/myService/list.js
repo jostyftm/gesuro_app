@@ -26,6 +26,7 @@ const MyServiceListPage = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [services, setservices] = useState([]);
+    const [serviceSelected, setServiceSelected] = useState('');
     
     const {companyId} = useAuth();
 
@@ -143,6 +144,7 @@ const MyServiceListPage = () => {
                                                         className="dropdown-item text-danger"
                                                         data-bs-toggle="modal" 
                                                         data-bs-target="#modalDeleteService"
+                                                        onClick={() => {setServiceSelected(service.id)}}
                                                     >
                                                         Eliminar servicio
                                                     </button>
@@ -158,9 +160,13 @@ const MyServiceListPage = () => {
             </Panel>
             <MyServiceCreateModal 
                 id="modalCreateService" 
-                onCreate={(result) => {if(result)console.log("hahahah")}}
+                onCreate={(result) => {if(result){fetchServices()}}}
             />
-            <MyServiceDeleteModal id="modalDeleteService" />
+            <MyServiceDeleteModal 
+                id="modalDeleteService" 
+                service={serviceSelected}
+                onDelete={(result) => {if(result){fetchServices()}}}
+            />
         </DashboardLayout>
     );
 }
