@@ -18,7 +18,7 @@ const HeadquarterEditPage = ({headquarter, ...rest}) => {
                         placeholder="Seguros don pepito S.A.S"
                     />
                     <label>Nombre</label>
-                    <div class="invalid-feedback">
+                    <div className="invalid-feedback">
                         Please enter a message in the textarea.
                     </div>
                 </div>

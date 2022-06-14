@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Layout
 import DashboardLayout from 'layouts/DashboardLayout';
@@ -11,9 +11,42 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { DASHBOARD_EMPLOYEE_EDIT_ROUTE } from 'constants/routes';
 import EmployeeCreateModal from './new';
 import EmployeeDeleteModal from './delete';
+import useAuth from 'hooks/UseAuth';
+import { cathErrors } from 'utils/errors';
+import { companyEmployees } from 'services/companyService';
 
 
 const EmployeeListPage = () => {
+
+    const [employees, setEmployees] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+
+    const {companyId} = useAuth();
+
+
+    const fetchEmployees = async() => {
+
+        setIsLoading(true);
+        
+        try{
+            const employeesResponse = await companyEmployees(companyId);
+            setEmployees(employeesResponse.data);
+        }catch(err){
+            cathErrors(err);
+        }
+
+        setIsLoading(false);
+    }
+
+    useEffect(() => {
+
+        fetchEmployees();
+
+        return () => {
+            setEmployees([]);
+        }
+    }, [])
     return (
         <DashboardLayout title="Empleados">
             <Panel>

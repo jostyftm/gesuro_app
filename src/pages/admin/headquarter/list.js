@@ -9,6 +9,7 @@ import { headquarterListBreadcum } from "./breadcum";
 import HeadquarterEditPage from "./edit";
 import { DASHBOARD_MY_HEADQUARTER_DETAIL_ROUTE } from "constants/routes";
 import HeadquarterDeleteModal from "./delete";
+import HeadquarterNewModal from "./new";
 
 const HeadQuaterListPage = () => {
 
@@ -28,6 +29,14 @@ const HeadQuaterListPage = () => {
                     />
                     <span className="fs-4 fw-bold">Sedes</span>
                     <span>Estas son las sedes de <b>Tu empresa</b>, a las que puedes asignarles empleados</span>
+                    <Link
+                        to="#"
+                        className="btn btn-sm btn-primary mt-2"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#modalCreateHeadquarter"
+                    >
+                        Nuevo empleado
+                    </Link>
                 </div>
                 <div className="container">
                     <div className="row">
@@ -90,6 +99,7 @@ const HeadQuaterListPage = () => {
                     </div>
                 </div> 
             </Panel>
+            <HeadquarterNewModal id="modalCreateHeadquarter" />
             <HeadquarterEditPage  id="modalEditHeadquarter" />
             <HeadquarterDeleteModal id="modalDeleteHeadquarter" />
         </DashboardLayout>
